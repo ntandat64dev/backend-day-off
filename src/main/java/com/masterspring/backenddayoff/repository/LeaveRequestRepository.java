@@ -6,11 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long> {
-    List<LeaveRequest> findByUserId(Long userId);
+    Page<LeaveRequest> findByUserId(Long userId, Pageable pageable);
 
     public Page<LeaveRequest> findAllById(Long userId, Pageable pageable);
 

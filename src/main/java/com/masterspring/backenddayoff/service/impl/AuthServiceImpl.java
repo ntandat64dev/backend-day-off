@@ -55,4 +55,11 @@ public class AuthServiceImpl implements AuthService {
             });
         }
     }
+
+    @Override
+    public AuthResponse getUserInfo(Long userId) {
+        var user = userRepository.findById(userId);
+        if (user.isEmpty()) throw new RuntimeException("User not found.");
+        return authResponseMapper.fromUser(user.get());
+    }
 }

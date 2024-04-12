@@ -71,9 +71,9 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     public LeaveRequestStatusDto confirmLeaveRequest(Long id, LeaveRequestStatusDto leaveRequestDto) {
         LeaveRequest leaveRequest = leaveRequestRepository.findById(id).orElseThrow(()
                 -> new AppException(500, "could not found"));
-        if (leaveRequestDto.getStatus() == 0 || leaveRequestDto.getStatus() == 1){
+        if (leaveRequestDto.getStatus() == 0 || leaveRequestDto.getStatus() == 1) {
             leaveRequest.setStatus(leaveRequestDto.getStatus());
-        }else{
+        } else {
             leaveRequest.setStatus(2);
         }
         leaveRequestRepository.save(leaveRequest);
@@ -102,7 +102,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     @Override
     public LeaveRequestPaginationResponse getPageLeaveRequestsWithUserId(Long userId, Integer pageNo, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<LeaveRequest> leaveRequestPage = leaveRequestRepository.findAllById(userId, pageable);
+        Page<LeaveRequest> leaveRequestPage = leaveRequestRepository.findByUserId(userId, pageable);
         List<LeaveRequestResponse> content = leaveRequestPage.getContent().stream().map(this::mapToResponse).collect(Collectors.toList());
         LeaveRequestPaginationResponse response = new LeaveRequestPaginationResponse();
         response.setContent(content);
