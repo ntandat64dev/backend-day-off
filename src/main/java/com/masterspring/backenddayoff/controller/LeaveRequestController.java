@@ -2,6 +2,7 @@ package com.masterspring.backenddayoff.controller;
 
 import com.masterspring.backenddayoff.dto.LeaveRequestStatusDto;
 import com.masterspring.backenddayoff.service.LeaveRequestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class LeaveRequestController {
     private final LeaveRequestService leaveRequestService;
 
+    @Autowired
     public LeaveRequestController(LeaveRequestService leaveRequestService) {
         this.leaveRequestService = leaveRequestService;
     }
