@@ -5,4 +5,5 @@ import com.masterspring.backenddayoff.dto.response.AuthResponse;
 
 public interface AuthService {
     AuthResponse login(AuthRequest authRequest);
+    AuthResponse getUserInfo(Long userId);
 }
