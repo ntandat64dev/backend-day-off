@@ -49,7 +49,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
         int remainDays = leaveRemain.getRemainDays();
         var starDateTime = leaveRequestPost.getStartDate().atTime(0, 0, 0);
         var endDateTime = leaveRequestPost.getEndDate().atTime(23, 59, 59);
-        int days = (int) Duration.between(starDateTime, endDateTime).toDays();
+        int days = (int) Duration.between(starDateTime, endDateTime).toDays() + 1;
         if (days > remainDays) {
             throw new AppException(400, "Request days exceeds remain days. (Remain days: %s, request days: %s)".formatted(remainDays, days));
         }
